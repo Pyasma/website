@@ -297,3 +297,33 @@ helm install \
 -n chaos-kraken \
 chaos-kraken-instance startx/chaos-kraken
 ```
+
+
+---
+
+## Auto-generated update — krkn#21
+
+> Source: [Pyasma/krkn#21](https://github.com/Pyasma/krkn/pull/21) — Another test
+> Change types: unknown
+
+---
+title: "TeeLogHandler Enhancements and Rollback Logging"
+weight: 1
+---
+
+This update introduces a new `clear` method to the `TeeLogHandler` for resetting the log buffer. This is particularly useful for test scenarios where a clean log state is required between test executions. Furthermore, the logging messages within the `krkn/rollback/command.py` have been refined for improved clarity and specificity, especially when no rollback directories are found.
+
+## TeeLogHandler Enhancements
+
+The `TeeLogHandler` now includes a `clear()` method.
+
+### `TeeLogHandler.clear()`
+
+This method clears all captured log messages from the handler's internal buffer. This is useful for resetting the log state between operations or tests.
+
+## Rollback Command Logging Improvements
+
+The logging messages for the `list_rollback` command have been updated to provide more context when rollback directories are not found.
+
+*   When a `run_uuid` is specified and no rollback directories are found, the log message now includes the `run_uuid` for better identification: `No rollback directories found for run_uuid in: {run_uuid}`.
+*   When no `run_uuid` is specified and no rollback directories are found, a more distinct error message is logged: `No rollback directories found Error::::`.
